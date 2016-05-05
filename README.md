@@ -1,0 +1,6 @@
+# apparmor_profiles
+
+These are the apparmor profiles for applications that i use and the profiles i have modified in the process...
+This is mainly a backup for myself, but feel free to use and change them to your likings.
+
+a little request though... if you change them, tell me what you changed and why, would love to learn to do these things better...
