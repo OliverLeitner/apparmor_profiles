@@ -69,4 +69,5 @@
   /etc/fonts/conf.avail/*.conf r,
   /etc/gnome-vfs-2.0/modules/ r,
   /etc/gnome-vfs-2.0/modules/*.conf r,
+  /usr/bin/cut ix,
 }
