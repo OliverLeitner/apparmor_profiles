@@ -79,6 +79,11 @@
   /usr/share/alsa/cards/aliases.conf r,
   /etc/machine-id r,
 
+  #downloads need this
+  /etc/fstab r,
+  /usr/share/glib-2.0/schemas/gschemas.compiled r,
+  /run/user/[0-9]*/dconf/user mrw,
+
   /var/tmp/ mrw,
   /var/tmp/** mrw,
   /tmp/ mrw,
@@ -98,8 +103,6 @@
   owner @{HOME}/.local/share/mime/ mrw,
   owner @{HOME}/.local/share/mime/** mrw,
   owner @{HOME}/.config/user-dirs.dirs mrw,
-  owner @{HOME}/Desktop/ mrw,
-  owner @{HOME}/Desktop/** mrw,
   owner @{HOME}/.local/share/icons/ mrw,
   owner @{HOME}/.local/share/icons/** mrw,
   owner @{HOME}/.adobe/Flash_Player/AssetCache/ mrw,
@@ -107,6 +110,11 @@
   owner @{HOME}/.macromedia/Flash_Player/#SharedObjects/ mrw,
   owner @{HOME}/.macromedia/Flash_Player/#SharedObjects/** mrw,
   owner @{HOME}/.macromedia/Flash_Player/macromedia.com/support/flashplayer/sys/settings.* mrw,
+
+  #if you want to download something...
+  @{HOME}/.local/share/recently-used.xbel mrw,
+  owner @{HOME}/.config/dconf/user mrw,
+  @{HOME}/.local/share/recently-used.xbel.* mrw,
 
   #for youtube
   owner @{HOME}/.config/pulse/ rw,
@@ -156,6 +164,9 @@
 	  bus=system
 	  peer=(name=org.freedesktop.DBus),
   dbus (send)
+	  bus=system
+	  interface=org.freedesktop.DBus.Properties,
+  dbus (send)
 	  bus=session
 	  peer=(name=org.freedesktop.DBus),
   dbus (send)
@@ -167,6 +178,9 @@
   dbus (send)
 	  bus=session
 	  interface=org.gnome.GConf.Server,
+  dbus (receive, send)
+	  bus=session
+	  interface=ca.desrt.dconf.Writer,
   dbus (receive)
 	  bus=session
 	  interface=org.freedesktop.DBus**,
@@ -176,7 +190,15 @@
   ptrace,
   signal,
 
-  #nev special
+  #special: change these to fit your needs...
+  owner @{HOME}/Desktop/ mrw,
+  owner @{HOME}/Desktop/** mrw,
+  owner @{HOME}/Bilder/ mrw,
+  owner @{HOME}/Bilder/** mrw,
+  owner @{HOME}/Downloads/ mrw,
+  owner @{HOME}/Downloads/** mrw,
+  owner @{HOME}/Dokumente/ mrw,
+  owner @{HOME}/Dokumente/** mrw,
   /Backup/oneclick/ rw,
   /Backup/oneclick/** rw,
   /Backup/pp/ rw,
