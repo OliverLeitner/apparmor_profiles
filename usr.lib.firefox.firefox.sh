@@ -65,6 +65,8 @@
   /etc/ssl/openssl.cnf r,
   /etc/adobe/mms.cfg r,
   /etc/mailcap r,
+  /usr/share/sounds/freedesktop/stereo/dialog-warning.oga r,
+  /usr/bin/vim.basic ix,
 
   #for youtube
   /run/dbus/system_bus_socket rw,
@@ -156,9 +158,9 @@
   unix (send, receive, connect)
 	type=stream
 	peer=(addr="@/tmp/dbus-*"),
-  unix (send, receive, connect)
+  unix (send)
 	type=dgram
-	peer=(addr=none),
+	peer=(addr="@*"),
 
   dbus (send)
 	  bus=system
@@ -203,4 +205,23 @@
   /Backup/oneclick/** rw,
   /Backup/pp/ rw,
   /Backup/pp/** rw,
+
+  #linux printing support
+  dbus (send,receive)
+  	bus=system
+  	interface=org.freedesktop.Avahi.Server,
+  dbus (send,receive)
+  	bus=system
+  	interface=org.freedesktop.Avahi.ServiceBrowser,
+
+  dbus (send,receive)
+  	bus=system
+  	interface=org.freedesktop.ColorManager,
+  dbus (send,receive)
+  	bus=system
+  	interface=org.freedesktop.ColorManager.Device,
+
+  /usr/bin/avahi-daemon rix,
+  /usr/bin/dbus-daemon rix,
+  /run/cups/cups.sock mrw,
 }

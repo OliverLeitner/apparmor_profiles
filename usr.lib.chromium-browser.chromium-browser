@@ -90,6 +90,9 @@
   # Needed for the crash reporter
   owner @{PROC}/[0-9]*/auxv r,
 
+  # something chromium just requested a few times today
+  /sys/devices/pci*/*:*:*/usb[0-9/[0-9]-[0-0]/busnum r,
+
   # chromium mmaps all kinds of things for speed.
   /etc/passwd m,
   /usr/share/fonts/truetype/**/*.tt[cf] m,
